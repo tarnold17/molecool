@@ -11,6 +11,14 @@ on:
       - "main"
 
 jobs:
+  welcome:
+    name: ASCII
+    runse-on: ubuntu-latest
+    steps:
+      - uses: mscoutermarsh/ascii-art-action@master
+        with:
+          text: '${{ github.repository_name }} : ${{ github.event_name }} from ${{ github.actor }}'
+
   test:
     name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
@@ -55,8 +63,3 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - uses: mscoutermarsh/ascii-art-action@master
-        runs-on: ubuntu-latest
-        with:
-          text: 'MOLECOOL'
